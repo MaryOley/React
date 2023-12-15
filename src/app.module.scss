@@ -1,0 +1,42 @@
+.wrapper {
+    width: 1395px;
+    margin: 0 auto;
+    border: solid 1px;
+}
+
+.headerBox {
+    display: flex;
+    justify-content: center;
+}
+
+.imagesContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.imagesBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.runString {
+display: flex;
+align-items: center;
+gap: 28px;
+}
+
+.chillyText {
+color: #000;
+text-align: center;
+font-size: 17px;
+letter-spacing: 0.5px;
+}
+
+.imagesText {
+color: #000;
+text-align: center;
+font-size: 58px;
+letter-spacing: 0.5px;
+padding: 30px 30px;
+}

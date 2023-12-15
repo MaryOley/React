@@ -1,0 +1,108 @@
+{
+	"Создать компонент": {
+		"prefix": "r",
+		"body": [
+			"import { useState } from 'react';"
+			"import style from './${TM_FILENAME_BASE}.module.scss';"
+			""
+			"type Props = {};"
+			""
+			"export const ${TM_FILENAME_BASE} = (props: Props) => {"
+			"	const [count, setCount] = useState(0);"
+			""
+			"	return (<div></div>)"
+			"}"
+		],
+	},
+	"Пример props": {
+		"prefix": "pts",
+		"body": [
+			"type Props = {"
+			"	a: string;"
+			"	b: number;"
+			"	c: boolean;"
+			"	d: string | number;"
+			"	e?: string;"
+			"	f: null;"
+			"	obj: {"
+			"		a: string;"
+			"		b: number;"
+			"	};"
+			"	fn: () => void;"
+			"	fn1: () => number;"
+			"};"
+		],
+		"description": "Log output to console"
+	},
+	"div.className": {
+		"prefix": "d",
+		"body": [
+			"<div className={style.$1}></div>"
+		],
+	},
+	"стрелочная функция": {
+		"prefix": "fn",
+		"body": [
+			"const $1 = () => {"
+			""
+			"};"
+		],
+	},
+
+	"отфильтрованный массив": {
+		"prefix": "filter",
+		"body": [
+			"let filtered$1 = array.filter((item, index) => {"
+			"return"
+			"});"
+		],
+	},
+
+	"измененный массив": {
+		"prefix": "map",
+		"body": [
+			"let maped$1 = array.map((item, index) => {"
+			"return"
+			"});"
+		],
+	},
+
+	"найти элемент массива": {
+		"prefix": "find",
+		"body": [
+			"let found$1 = array.find((item, index) => {"
+			"return"
+			"});"
+		],
+	},
+
+	"массив с замененным куском": {
+		"prefix": "splice",
+		"body": [
+			"Array$1.splice(startIndex, deleteCount, newElements);"
+		],
+	},
+
+	"массив с вырезанным куском": {
+		"prefix": "slice",
+		"body": [
+			"Array$1.slice(startIndex, endIndex);"
+		],
+	},
+
+	"объединенный массив": {
+		"prefix": "concat",
+		"body": [
+			"Array$1.concat(arg1, arg2);"
+		],
+	},
+
+	"изменение элементов массива": {
+		"prefix": "forEach",
+		"body": [
+			"Array$1.forEach((item, index) => {"
+			""
+			"});"
+		],
+	},
+}
