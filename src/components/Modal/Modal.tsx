@@ -1,24 +1,62 @@
-import { useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import styles from "./Modal.module.scss";
+import cn from "classnames";
 
 type Props = {
-  showModal: boolean;
+  isOpen: boolean;
+  onClickClose: () => void;
+  children?: ReactNode;
+  title?: string;
+  withCloseButton?: boolean;
 };
 
-export const Modal = (props: Props) => {
-  const [showModal, setShowModal] = useState(true);
+export const Modal = ({
+  isOpen,
+  onClickClose,
+  children,
+  title,
+  withCloseButton,
+}: Props) => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  // useEffect(() => {
+  //   if (isOpen === false) {
+  //     setIsFullScreen(false);
+  //   }
+  // }, [isOpen]);
+
+  const handleClose = () => {
+    onClickClose();
+    setIsFullScreen(false);
+  };
 
   return (
-    <>
-      <div className={showModal ? styles.modal : styles.modalClose}>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam
-          consectetur ipsum suscipit, reiciendis animi aliquid fugit ratione
-          deserunt possimus recusandae quae et numquam, deleniti consequatur
-          asperiores facilis nostrum ipsam eaque.
-        </p>
-        <button className={styles.button} onClick={() => setShowModal(false)}>Close</button>
-      </div>
-    </>
+    <div
+      className={cn(styles.modal, {
+        [styles.isOpen]: isOpen,
+        [styles.isFullScreen]: isFullScreen,
+      })}
+    >
+      {withCloseButton && (
+        <button className={styles.buttonClose} onClick={handleClose}>
+          x
+        </button>
+      )}
+      {withCloseButton && (
+        <button
+          className={styles.buttonFullScreen}
+          onClick={() => setIsFullScreen(true)}
+        >
+          x
+        </button>
+      )}
+      {title && <h1>{title}</h1>}
+
+      <p>{children}</p>
+
+      <button className={styles.button} onClick={handleClose}>
+        Close
+      </button>
+    </div>
   );
 };

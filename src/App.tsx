@@ -14,14 +14,22 @@ export const App = (props: Props) => {
     <>
       <button
         onClick={() => {
-          setIsOpen(false);
+          setIsOpen(true);
         }}
         className={style.button}
-      >?</button>
+      >
+        ?
+      </button>
       <div className={style.wrapper}>
         <div className={style.headerBox}>
           <Header />
-          <Modal showModal={isOpen} />
+
+          <Modal isOpen={isOpen} onClickClose={() => setIsOpen(false)} withCloseButton={true}>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam
+              consectetur ipsum suscipit, reiciendis animi aliquid fugit ratione
+              deserunt possimus recusandae quae et numquam, deleniti consequatur
+              asperiores facilis nostrum ipsam eaque.
+          </Modal>
         </div>
       </div>
     </>
