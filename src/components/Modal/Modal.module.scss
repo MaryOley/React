@@ -1,0 +1,36 @@
+body {
+    margin: auto;
+}
+
+.modal {
+    width: 400px;
+    text-align: center;
+    border: solid 1px rgb(176, 176, 176);
+    padding: 20px 40px;
+    background-color: azure;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);    
+}
+
+.modalClose {
+ display: none;
+}
+
+.button {
+    border: none;
+    background: #FB4B4D;
+    color: white;
+    height: 25px;
+    width: 60px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.button:hover {
+background: white;
+border: solid 1px #FB4B4D;
+border-radius: 7px;
+color: #FB4B4D;
+}

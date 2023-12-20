@@ -1,9 +1,7 @@
 import { useState } from "react";
 import style from "./Header.module.scss";
 
-type Props = {};
-
-export const Header = (props: Props) => {
+export const Header = () => {
   const [count, setCount] = useState(0);
 
   return (
