@@ -1,9 +1,15 @@
-body {
-  margin: auto;
-}
+
 
 :root {
   --scale--ratio: 0;
+}
+
+.wrap {
+position: fixed;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
 }
 
 .modal { 
@@ -72,4 +78,14 @@ height: 20px;
 width: 20px;
 cursor: pointer;
 transition: 0.5s;
+display: flex;
+align-items: center;
+}
+
+.buttonFullScreen::after {
+  content:"";
+  width: 5px;
+  height: 5px;
+  border: solid 1px white;
+  position: absolute;
 }
