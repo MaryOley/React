@@ -1,22 +1,46 @@
 body {
     margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
+
 .sidebar {
+    display: block;
     height: 100vh;
     width: 300px;
     background-color: azure;
     position: absolute;
-    left: 0;
+    transition: 1s;
 }
 
-.button {
+.close.left {
+left: -300px;
+}
+
+.close.right {
+    right: -300px;
+}
+
+.right {
+   right: 0;
+   border-left: solid 1px gray;
+}
+
+.left {
+    left: 0;
+    border-right: solid 1px gray;
+}
+
+.closeBtn {
     position: absolute;
     right: 0;
     width: 20px;
     height: 20px;
+    background-color: #fb4b4d;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
 }
 
-.red {
-    background: red;
-}
