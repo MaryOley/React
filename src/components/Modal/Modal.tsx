@@ -1,6 +1,6 @@
-import { ReactNode, useEffect, useState } from "react";
-import styles from "./Modal.module.scss";
-import cn from "classnames";
+import { ReactNode, useEffect, useState } from 'react';
+import styles from './Modal.module.scss';
+import cn from 'classnames';
 
 type Props = {
   isOpen: boolean;
@@ -43,10 +43,7 @@ export const Modal = ({
         </button>
       )}
       {withCloseButton && (
-        <button
-          className={styles.buttonFullScreen}
-          onClick={() => setIsFullScreen(true)}
-        >
+        <button className={styles.buttonFullScreen} onClick={() => setIsFullScreen(true)}>
           x
         </button>
       )}

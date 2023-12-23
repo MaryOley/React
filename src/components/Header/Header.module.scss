@@ -1,51 +1,9 @@
-.wrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 30px 30px;
-}
-
-.menuElRed {
-    font-size: 14px;
-    background: #FB4B4D;
-    letter-spacing: 0.5px;
-    width: 150px;
+.header {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    background: azure;
     height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    border-bottom: solid 1px gray;
 }
-
-.menuEl {
-    color: #222;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-}
-
-.menuEl:first-child {
-    color: white;
-}
-
-.circleRed {
-    width: 17px;
-    height: 17px;
-    border: 1px solid #000;
-    border-radius: 50%;
-    background: #FB4B4D;
-}
-
-.circlePurple {
-    width: 17px;
-    height: 17px;
-    border: 1px solid #000;
-    border-radius: 50%;
-    background: #8B83F6;
-}
-
-.logo {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-}
-

@@ -1,25 +1,25 @@
-type ClassItem = string | {[key: string]: boolean}
+type ClassItem = string | { [key: string]: boolean };
 
 export const cn = (...args: ClassItem[]): string => {
-    const classArray = args;
+  const classArray = args;
 
-    let classStr = '';
+  let classStr = '';
 
-    classArray.forEach(classItem => {
-        if(typeof classItem === 'string') {
-            classStr+= classItem + ' ';
+  classArray.forEach((classItem) => {
+    if (typeof classItem === 'string') {
+      classStr += classItem + ' ';
+    }
+
+    if (typeof classItem === 'object') {
+      const classObj = classItem;
+
+      Object.keys(classObj).forEach((key) => {
+        if (classObj[key]) {
+          classStr += key + ' ';
         }
+      });
+    }
+  });
 
-        if(typeof classItem === 'object') {
-            const classObj = classItem;
-
-            Object.keys(classObj).forEach((key) => {
-                if(classObj[key]) {
-                    classStr+= key + ' ';
-                }
-            })
-        }
-    })
-
-    return classStr.trim();
-}
+  return classStr.trim();
+};
