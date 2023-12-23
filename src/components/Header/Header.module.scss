@@ -7,7 +7,6 @@
 }
 
 .menuElRed {
-    color: #FFF;
     font-size: 14px;
     background: #FB4B4D;
     letter-spacing: 0.5px;
@@ -22,6 +21,10 @@
     color: #222;
     font-size: 14px;
     letter-spacing: 0.5px;
+}
+
+.menuEl:first-child {
+    color: white;
 }
 
 .circleRed {
