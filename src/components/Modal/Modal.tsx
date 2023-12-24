@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import styles from './Modal.module.scss';
 import cn from 'classnames';
+import { Portal } from '../Portal/Portal';
 
 type Props = {
   isOpen: boolean;
@@ -19,41 +20,44 @@ export const Modal = ({
 }: Props) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  // useEffect(() => {
-  //   if (isOpen === false) {
-  //     setIsFullScreen(false);
-  //   }
-  // }, [isOpen]);
-
   const handleClose = () => {
     onClickClose();
     setIsFullScreen(false);
   };
 
+  if (!isOpen) {
+    return null;
+  }
+
   return (
-    <div
-      className={cn(styles.modal, {
-        [styles.isOpen]: isOpen,
-        [styles.isFullScreen]: isFullScreen,
-      })}
-    >
-      {withCloseButton && (
-        <button className={styles.buttonClose} onClick={handleClose}>
-          x
-        </button>
-      )}
-      {withCloseButton && (
-        <button className={styles.buttonFullScreen} onClick={() => setIsFullScreen(true)}>
-          x
-        </button>
-      )}
-      {title && <h1>{title}</h1>}
+    <Portal>
+      <div
+        className={cn(styles.modal, {
+          [styles.isOpen]: isOpen,
+          [styles.isFullScreen]: isFullScreen,
+        })}
+      >
+        {withCloseButton && (
+          <button className={styles.buttonClose} onClick={handleClose}>
+            x
+          </button>
+        )}
+        {withCloseButton && (
+          <button
+            className={styles.buttonFullScreen}
+            onClick={() => setIsFullScreen(true)}
+          >
+            x
+          </button>
+        )}
+        {title && <h1>{title}</h1>}
 
-      <p>{children}</p>
+        <p>{children}</p>
 
-      <button className={styles.button} onClick={handleClose}>
-        Close
-      </button>
-    </div>
+        <button className={styles.button} onClick={handleClose}>
+          Close
+        </button>
+      </div>
+    </Portal>
   );
 };

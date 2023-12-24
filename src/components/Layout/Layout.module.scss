@@ -1,4 +1,16 @@
 .content {
-    margin-left: 300px;
-    margin-top: 50px;
+  margin-top: 50px;
+  padding: 24px;
+}
+
+.layout {
+    display: flex;
+}
+
+.leftSide {
+    height: 100vh;
+    width: 300px;
+    background-color: azure;
+    border-right: solid 1px gray;
+    padding-top: 50px;
 }

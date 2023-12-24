@@ -1,0 +1,42 @@
+.button {
+    background: white;
+    margin: 0px 20px;
+    cursor: pointer;
+}
+
+.xs {
+width: 60px;
+height: 20px;
+}
+
+.s {
+    width: 80px;
+    height: 25px;
+}
+
+.light {
+    background: rgb(255, 208, 238);
+    color: rgb(162, 33, 102);
+    border: 0.5mm outset rgb(162, 33, 102);
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.light:hover {
+    background: white;
+    color: rgb(162, 33, 102);
+}
+
+.dark {
+    background: rgb(162, 33, 102);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.dark:hover {
+    background: rgb(255, 208, 238);
+    color: rgb(162, 33, 102);
+    border: 0.6mm outset rgb(215, 119, 170);
+}

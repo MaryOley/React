@@ -12,7 +12,7 @@ export const Layout: FC<Props> = ({ children, sidebarContent }) => {
   return (
     <div className={styles.layout}>
       <Header></Header>
-      <Sidebar>{sidebarContent}</Sidebar>
+      <div className={styles.leftSide}>{sidebarContent}</div>
       <div className={styles.content}>{children}</div>
     </div>
   );
