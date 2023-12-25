@@ -1,37 +1,84 @@
-# Vite + React + Typescript + Eslint + Prettier
+# React
 
-A starter for React with Typescript with the fast Vite and all static code testing with Eslint and formatting with Prettier.
+#### Как пользоваться useState
 
-![Vite + React + Typescript + Eslint + Prettier](/resources/screenshot.png)
+useState() создает переменную при изменении котороый перерисовывается компонент, хранит в себе состояния компонента (показывается блок или нет, текущий пункт меню, текущий слайд, изменяемый список слайдов)
 
-I found out about Vite and I wanted to have a boilerplate for the technologies that I use. You can find more about these in the following links: [Vite](https://github.com/vitejs/vite), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/), [Eslint](https://eslint.org/), [Prettier](https://prettier.io/).
-
-## Installation
-
-Clone the repo and run `yarn install`
-
-or Run command
+```javascript
+const [state, setState] = useState(false); // начальное состояние false
 
 ```
-npx degit TheSwordBreaker/vite-reactts-eslint-prettier project-name
+меняем значение переменной через функию **setState**
+```tsx
+const [isOpen, setOpen] = useState(false);
+
+
+return (
+    <>
+        <button onClick={() => setOpen(true)}>Показать что то</button>
+
+        {isOpen && <div>Меня показали</div>}
+    </div>
+)
+
+```
+Но если в useState используются объекты или массивы
+
+```tsx
+const [slides, setSlides] = useState([]);
+
+```
+то в setSlides в качестве аргумента передаем **новый объект или массив**:
+
+```tsx
+const [slides, setSlides] = useState([]);
+
+ <button onClick={() => {
+    // правильно
+    setSlides([...slides, {title: 'Новый слайд'}])
+
+    // не правильно
+    slides.push({title: 'Новый слайд'});
+    setSlides(slides);
+
+ }}>Добавить слайд</button>
+
+  <button onClick={() => {
+    // правильно
+    const newSlides = slides.filter(s => s.id !== slide.id)
+
+    setSlides(newSlides)
+ }}>Удалить слайд</button>
+
 ```
 
-## Start
+#### Как оnрисовать повторяющиеся элементы
 
-After the successfull installation of the packages: `yarn dev`
+1. Должен быть массив с данными (создается через useState или передается в настройках компонента)
+```javascript
+const slides = [
+    {id: 1, title: 'Слайд 1'}, 
+    {id: 2, title: 'Слайд 2'},
+];
 
-## Steps in Vscode
+const [slides, setSlides] = useState<{title: string}[]>([]);
+```
 
-#### (works with better with this template)
+2. Используем метод массивов **map**, обязательно задаем **key** у повоторяющегося элемента
 
-1. Install Eslint and prettier extension for vs code.
-2. Make Sure Both are enabled
-3. Make sure all packages are Installed. (Mostly Eslint and prettier in node_modules)
-4. Enable formatOnSave of vs code
-5. Open a .tsx file and check if the bottom right corners of vs code have Eslint and Prettier with a double tick
+```tsx
+return (<div>
+{slides.map((slide, index) => {
+    return (
+        <div key={index} onClick={() => {
+            const newSlides = slides.filter(s => s.id !== slide.id);
 
-![Screenshot (253)_LI](https://user-images.githubusercontent.com/52120562/162486286-7383a737-d555-4f9b-a4dd-c4a81deb7b96.jpg)
+            setSlides(newSlides);
+        }}>{slide.title}</div>
+    )
+})}
+</div>)
 
-If Everything is Good Then It Should Work, but let me new if something else happens
+```
 
-Made with ❤️ by theSwordBreaker(we Destory all types of sword ⚡)
+

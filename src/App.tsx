@@ -9,6 +9,7 @@ import { Button } from './components/Button/Button';
 import { Accardion } from './components/Accardion/Accardion';
 import { CrossAndZero } from './components/CrossAndZero/CrossAndZero';
 import { ButtonPage } from './pages/ButtonPage/ButtonPage';
+import { Slider } from './components/Slider/Slider';
 
 const menu = [
   {
@@ -31,10 +32,14 @@ const menu = [
     title: 'CrossAndZero',
     content: <CrossAndZero />,
   },
+  {
+    title: 'Slider',
+    content: <Slider />,
+  },
 ];
 
 export const App = () => {
-  const [active, setActive] = useState(0);
+  const [currentMenuItem, setCurrentMenuItem] = useState(5);
 
   return (
     <>
@@ -42,12 +47,12 @@ export const App = () => {
         sidebarContent={
           <Menu
             items={menu}
-            active={active}
-            onClickMenuItem={(index) => setActive(index)}
+            active={currentMenuItem}
+            onClickMenuItem={(index) => setCurrentMenuItem(index)}
           ></Menu>
         }
       >
-        {menu[active].content}
+        {menu[currentMenuItem].content}
       </Layout>
     </>
   );
