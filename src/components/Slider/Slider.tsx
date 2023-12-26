@@ -3,28 +3,36 @@ import styles from './Slider.module.scss';
 
 export const Slider = () => {
   const [slidesList, setSlidesList] = useState([{ id: 1 }, { id: 2 }]);
-
   const [slideIndex, setSlideIndex] = useState(0);
+
+  const isLastSlide = slideIndex === slidesList.length - 1;
+  const isFirstSlide = slideIndex === 0;
 
   const addSlide = () => {
     setSlidesList([...slidesList, { id: slidesList.length + 1 }]);
   };
-  const deliteSlide = (slideId: number) => {
+
+  const deleteSlide = (slideId: number) => {
     const newSlidesList = slidesList.filter((s) => s.id !== slideId);
     setSlidesList(newSlidesList);
-    // if (slideIndex === slidesList.length - 1) {
-    // }
-  };
-  const next = () => {
-    if (slideIndex !== slidesList.length - 1) {
-      setSlideIndex(slideIndex + 1);
-    }
-  };
-  const prev = () => {
-    if (slideIndex !== 0) {
+
+    if (isLastSlide) {
       setSlideIndex(slideIndex - 1);
     }
   };
+
+  const next = () => {
+    if (!isLastSlide) {
+      setSlideIndex(slideIndex + 1);
+    }
+  };
+
+  const prev = () => {
+    if (!isFirstSlide) {
+      setSlideIndex(slideIndex - 1);
+    }
+  };
+
   return (
     <>
       <button
@@ -54,7 +62,7 @@ export const Slider = () => {
       <button
         className={styles.delete}
         onClick={() => {
-          deliteSlide(slidesList[slideIndex].id);
+          deleteSlide(slidesList[slideIndex].id);
         }}
       >
         Удалить слайд
