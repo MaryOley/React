@@ -4,25 +4,23 @@ import { Sidebar } from '../../components/Sidebar/Sidebar';
 
 export const SidebarPages = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const o = {
-    dawd: { a: 4 },
-  };
+  const [isOpenRight, setIsOpenRight] = useState(false);
 
   return (
     <>
-      <button className={styles.buttonOpen} onClick={() => setIsOpen(true)}>
-        open
-      </button>
+      <button onClick={() => setIsOpen(true)}>Открыть слева</button>
+      <button onClick={() => setIsOpenRight(true)}>Открыть справа</button>
+
+      <Sidebar isOpen={isOpen} handleClose={() => setIsOpen(false)} position="left">
+        Открыт слева
+      </Sidebar>
+
       <Sidebar
-        isOpen={isOpen}
-        handleClose={() => setIsOpen(false)}
-        title="gadgadgadgad"
+        isOpen={isOpenRight}
+        handleClose={() => setIsOpenRight(false)}
         position="right"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ducimus, obcaecati
-        molestiae rerum accusantium quaerat? Asperiores maiores, excepturi quis iusto
-        beatae quaerat, iste quasi dignissimos molestias perferendis adipisci ducimus est.
+        справа
       </Sidebar>
     </>
   );

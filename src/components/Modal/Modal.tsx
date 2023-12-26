@@ -1,7 +1,6 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import styles from './Modal.module.scss';
-import cn from 'classnames';
-import { Portal } from '../Portal/Portal';
+import { PortalWithTransition } from '../Portal/PortalWithTransition';
 
 type Props = {
   isOpen: boolean;
@@ -18,38 +17,27 @@ export const Modal = ({
   title,
   withCloseButton,
 }: Props) => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
-
   const handleClose = () => {
     onClickClose();
-    setIsFullScreen(false);
   };
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
-    <Portal>
-      <div
-        className={cn(styles.modal, {
-          [styles.isOpen]: isOpen,
-          [styles.isFullScreen]: isFullScreen,
-        })}
-      >
+    <PortalWithTransition
+      isOpen={isOpen}
+      classNames={{
+        wrap: styles.wrap,
+        start: styles.start,
+        active: styles.active,
+        end: styles.end,
+      }}
+    >
+      <div className={styles.modal}>
         {withCloseButton && (
-          <button className={styles.buttonClose} onClick={handleClose}>
+          <button className={styles.сlose} onClick={handleClose}>
             x
           </button>
         )}
-        {withCloseButton && (
-          <button
-            className={styles.buttonFullScreen}
-            onClick={() => setIsFullScreen(true)}
-          >
-            x
-          </button>
-        )}
+
         {title && <h1>{title}</h1>}
 
         <p>{children}</p>
@@ -58,6 +46,6 @@ export const Modal = ({
           Close
         </button>
       </div>
-    </Portal>
+    </PortalWithTransition>
   );
 };

@@ -1,34 +1,23 @@
-:root {
-  --scale--ratio: 0;
-}
-
 .modal {
   display: block;
-  transform-origin: 0% 0%;
-  position: absolute;
-  z-index: 10;
   width: 400px;
-  left: 50%;
-  top: 50%;
   text-align: center;
   border: solid 1px rgb(176, 176, 176);
   padding: 20px 40px;
   background-color: azure;
-  transform: scale(var(--scale--ratio)) translate(-50%, -50%);
-  transition: transform 0.7s;
 }
 
-.isOpen {
-  --scale--ratio: 1;
-}
-
-.isFullScreen {
-  left: 0;
+.сlose {
+  position: absolute;
+  right: 0;
   top: 0;
-  transform: none;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+  border: white;
+  background: rgb(176, 176, 176);
+  color: white;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .button {
@@ -48,28 +37,29 @@
   color: #fb4b4d;
 }
 
-.buttonClose {
-  position: absolute;
-  right: 0;
-  top: 0;
-  border: white;
-  background: rgb(176, 176, 176);
-  color: white;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
-  transition: 0.5s;
+
+
+.wrap {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: scale(1) translate(-50%, -50%);
+  transform-origin: 0% 0%;
 }
 
-.buttonFullScreen {
-  position: absolute;
-  right: 20px;
-  top: 0;
-  border: white;
-  background: rgb(176, 176, 176);
-  color: white;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
-  transition: 0.5s;
+.start {
+  transform: scale(0.5) translate(-50%, -50%);
+  opacity: 0;
+}
+
+.active {
+  transition: transform 300ms, opacity 300ms;
+  transform: scale(1) translate(-50%, -50%);
+  opacity: 1;
+}
+
+.end {
+  transition: transform 300ms, opacity 300ms;
+  opacity: 0;
+  transform: scale(0) translate(-50%, -50%);
 }
