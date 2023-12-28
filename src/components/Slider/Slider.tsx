@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import styles from './Slider.module.scss';
+import { Slide } from './Slide/Slide';
+import { Marker } from './Marker/Marker';
 
 export const Slider = () => {
   const [slidesList, setSlidesList] = useState([{ id: 1 }, { id: 2 }]);
@@ -12,13 +14,14 @@ export const Slider = () => {
     setSlidesList([...slidesList, { id: slidesList.length + 1 }]);
   };
 
-  const deleteSlide = (slideId: number) => {
-    const newSlidesList = slidesList.filter((s) => s.id !== slideId);
+  const deleteSlide = () => {
+    const newSlidesList = slidesList.filter((s, index) => index !== slideIndex);
     setSlidesList(newSlidesList);
 
     if (isLastSlide) {
       setSlideIndex(slideIndex - 1);
     }
+    console.log(newSlidesList);
   };
 
   const next = () => {
@@ -35,36 +38,32 @@ export const Slider = () => {
 
   return (
     <>
-      <button
-        onClick={() => {
-          addSlide();
-        }}
-      >
-        Добавить слайд
-      </button>
+      <button onClick={() => addSlide()}>Добавить слайд</button>
+
       <div className={styles.container}>
-        <div className={styles.slider} style={{ marginLeft: `${slideIndex * -100}px` }}>
+        <div className={styles.slider} style={{ marginLeft: `${slideIndex * -600}px` }}>
           {slidesList.map((slide, index) => {
             return (
-              <div className={styles.slide} key={index}>
+              <Slide key={index} isActive={index === slideIndex}>
                 {slide.id}
-              </div>
+              </Slide>
             );
           })}
         </div>
       </div>
+      <div className={styles.markerBox}>
+        {slidesList.map((slide, index) => {
+          return <Marker key={index} isActive={index === slideIndex}></Marker>;
+        })}
+      </div>
+
       <button className={styles.prev} onClick={() => prev()}>
         Назад
       </button>
       <button className={styles.next} onClick={() => next()}>
         Вперед
       </button>
-      <button
-        className={styles.delete}
-        onClick={() => {
-          deleteSlide(slidesList[slideIndex].id);
-        }}
-      >
+      <button className={styles.delete} onClick={() => deleteSlide()}>
         Удалить слайд
       </button>
     </>

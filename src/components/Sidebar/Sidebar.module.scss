@@ -4,7 +4,7 @@
   width: 300px;
   height: 100vh;
   background-color: azure;
-  z-index: 10;
+  z-index: var(--portal);
 }
 
 .left-wrap {
