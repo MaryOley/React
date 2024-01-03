@@ -3,7 +3,6 @@ import styles from './Sidebar.module.scss';
 import { cn } from '../../helpers/classnames';
 import { Portal } from '../Portal/Portal';
 import { PortalWithTransition } from '../Portal/PortalWithTransition';
-// import { cn } from '../../helpers/classnames';
 
 type Props = {
   isOpen?: boolean;

@@ -7,7 +7,7 @@ export const ModalPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div className={styles.position}>
       <h1>Modal</h1>
 
       <button onClick={() => setIsOpen(true)}>Открыть Modal</button>

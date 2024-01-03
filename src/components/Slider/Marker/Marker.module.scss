@@ -1,10 +1,13 @@
 .marker {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
 border: solid 1px;
+border-radius: 50%;
+cursor: pointer;
+background: white;
 }
 
 
 .isActive {
-    background: red;
+    background: rgb(249, 171, 171);
 }

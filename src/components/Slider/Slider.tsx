@@ -37,10 +37,12 @@ export const Slider = () => {
   };
 
   return (
-    <>
-      <button onClick={() => addSlide()}>Добавить слайд</button>
+    <div className={styles.container}>
+      <button className={styles.add} onClick={() => addSlide()}>Добавить слайд</button>
 
-      <div className={styles.container}>
+      <div className={styles.sliderBox}>
+        <button className={styles.prev} onClick={() => prev()}>⮜</button>
+        <button className={styles.next} onClick={() => next()}>⮞</button>
         <div className={styles.slider} style={{ marginLeft: `${slideIndex * -600}px` }}>
           {slidesList.map((slide, index) => {
             return (
@@ -53,19 +55,21 @@ export const Slider = () => {
       </div>
       <div className={styles.markerBox}>
         {slidesList.map((slide, index) => {
-          return <Marker key={index} isActive={index === slideIndex}></Marker>;
+          return (
+            <Marker
+              key={index}
+              isActive={index === slideIndex}
+              onClickMarker={() => {
+                setSlideIndex(index);
+              }}
+            ></Marker>
+          );
         })}
       </div>
 
-      <button className={styles.prev} onClick={() => prev()}>
-        Назад
-      </button>
-      <button className={styles.next} onClick={() => next()}>
-        Вперед
-      </button>
       <button className={styles.delete} onClick={() => deleteSlide()}>
         Удалить слайд
       </button>
-    </>
+    </div>
   );
 };

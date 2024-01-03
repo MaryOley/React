@@ -4,16 +4,15 @@ import { cn } from '../../../helpers/classnames';
 
 type Props = {
   isActive: boolean;
+  onClickMarker: () => void;
 };
 
-export const Marker: FC<Props> = (isActive) => {
-  const [active, setIsActive] = useState(false);
-
+export const Marker: FC<Props> = ({ isActive, onClickMarker }) => {
   return (
     <>
       <div
-        className={cn(styles.marker, { [styles.isActive]: active === true })}
-        onClick={() => setIsActive(true)}
+        onClick={onClickMarker}
+        className={cn(styles.marker, { [styles.isActive]: isActive === true })}
       ></div>
     </>
   );

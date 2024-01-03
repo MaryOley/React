@@ -7,3 +7,18 @@ body {
 :root {
     --portal: 10;
 }
+
+button {
+    height: 25px;
+    background: #fb4b4d;
+    border: solid white 1px;
+    color: white;
+    transition: 1s;
+}
+
+button:hover {
+    border-radius: 5px;
+    border: solid #fb4b4d 1px;
+    background: white;
+    color: #fb4b4d;
+}

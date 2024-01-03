@@ -1,9 +1,4 @@
 .content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
 }
 
 .layout {
@@ -15,5 +10,10 @@
     width: 300px;
     background-color: azure;
     border-right: solid 1px gray;
-    padding-top: 50px;
 }
+
+// @media (max-width: 1000px) {
+//     .leftSide {
+//         display: none;
+//     }
+// }

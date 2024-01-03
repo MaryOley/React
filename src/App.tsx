@@ -10,6 +10,8 @@ import { Accardion } from './components/Accardion/Accardion';
 import { CrossAndZero } from './components/CrossAndZero/CrossAndZero';
 import { ButtonPage } from './pages/ButtonPage/ButtonPage';
 import { Slider } from './components/Slider/Slider';
+import { SliderPage } from './pages/SliderPage/SliderPage';
+import { AccardionPage } from './pages/AccardionPage/AccardionPage';
 
 const menu = [
   {
@@ -26,7 +28,7 @@ const menu = [
   },
   {
     title: 'Accardion',
-    content: <Accardion title="Accardion" content="Accardion content" />,
+    content: <AccardionPage />,
   },
   {
     title: 'CrossAndZero',
@@ -34,7 +36,7 @@ const menu = [
   },
   {
     title: 'Slider',
-    content: <Slider />,
+    content: <SliderPage />,
   },
 ];
 

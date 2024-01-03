@@ -2,21 +2,19 @@ import { useState } from 'react';
 import styles from './CrossAndZero.module.scss';
 
 export const CrossAndZero = () => {
-  const [state, setState] = useState<Record<string, string>>({});
+  const [cellState, setCellState] = useState({});
 
-  const field = new Array(3).fill(null).map((item, rowIndex) => (
-    <div key={rowIndex}>
-      {new Array(3).fill(null).map((item, cellIndex) => (
-        <div
-          className={styles.cell}
-          onClick={() => setState({ ...state, [`${rowIndex}-${cellIndex}`]: 'X' })}
-          key={cellIndex}
-        >
-          {state[`${rowIndex}-${cellIndex}`]}
-        </div>
-      ))}
+  let player = 'x';
+
+  const field = new Array(9).fill(null).map((item, index) => (
+    <div
+      key={index}
+      className={styles.cell}
+      onClick={() => setCellState({ ...cellState, [`${index}`]: 'x' })}
+    >
+      {cellState[`${index}`]}
     </div>
   ));
-
-  return <div>{field}</div>;
+  console.log(field);
+  return <div className={styles.container}>{field}</div>;
 };

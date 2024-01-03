@@ -12,7 +12,7 @@ export const Accardion: FC<Props> = ({ title, content }) => {
   return (
     <div className={styles.accardion}>
       <div onClick={() => setIsOpen(!isOpen)}>{title}</div>
-      {isOpen && <div>{content}</div>}
+      {isOpen && <div className={styles.accardionEl}>{content}</div>}
     </div>
   );
 };

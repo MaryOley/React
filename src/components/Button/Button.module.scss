@@ -1,6 +1,6 @@
 .button {
     background: white;
-    margin: 0px 20px;
+    margin: 30px 30px;
     cursor: pointer;
 }
 
@@ -17,7 +17,7 @@ height: 20px;
 .light {
     background: rgb(255, 208, 238);
     color: rgb(162, 33, 102);
-    border: 0.5mm outset rgb(162, 33, 102);
+    border: solid 1px rgb(162, 33, 102);
     border-radius: 10px;
     transition: 1s;
 }
@@ -38,5 +38,5 @@ height: 20px;
 .dark:hover {
     background: rgb(255, 208, 238);
     color: rgb(162, 33, 102);
-    border: 0.6mm outset rgb(215, 119, 170);
+    border: solid 1px rgb(215, 119, 170);
 }
