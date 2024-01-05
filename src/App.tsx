@@ -1,56 +1,42 @@
 import { useState } from 'react';
 import { Layout } from './components/Layout/Layout';
 import { Menu } from './components/Menu/Menu';
-import { SidebarPages } from './pages/SidebarPage/SidebarPages';
-import { ModalPage } from './pages/ModalPage/ModalPage';
-import { CrossAndZero } from './components/CrossAndZero/CrossAndZero';
-import { ButtonPage } from './pages/ButtonPage/ButtonPage';
-import { SliderPage } from './pages/SliderPage/SliderPage';
-import { AccardionPage } from './pages/AccardionPage/AccardionPage';
+import { Home } from './components/Home/Home';
+import { Performers } from './components/Performers/Performers';
 
 const menu = [
   {
-    title: 'Sidebar',
-    content: <SidebarPages />,
+    title: 'Главная',
+    content: <Home />,
   },
   {
-    title: 'Modal',
-    content: <ModalPage />,
+    title: 'Исполнители',
+    content: <Performers />,
   },
   {
-    title: 'Button',
-    content: <ButtonPage />,
+    title: 'Жанры',
+    content: <div />,
   },
   {
-    title: 'Accardion',
-    content: <AccardionPage />,
-  },
-  {
-    title: 'CrossAndZero',
-    content: <CrossAndZero />,
-  },
-  {
-    title: 'Slider',
-    content: <SliderPage />,
+    title: 'Альбомы',
+    content: <div />,
   },
 ];
 
 export const App = () => {
-  const [currentMenuItem, setCurrentMenuItem] = useState(5);
+  const [currentMenuItem, setCurrentMenuItem] = useState(0);
 
   return (
-    <>
-      <Layout
-        sidebarContent={
-          <Menu
-            items={menu}
-            active={currentMenuItem}
-            onClickMenuItem={(index) => setCurrentMenuItem(index)}
-          ></Menu>
-        }
-      >
-        {menu[currentMenuItem].content}
-      </Layout>
-    </>
+    <Layout
+      menuContent={
+        <Menu
+          items={menu}
+          active={currentMenuItem}
+          onClickMenuItem={(index) => setCurrentMenuItem(index)}
+        ></Menu>
+      }
+    >
+      {menu[currentMenuItem].content}
+    </Layout>
   );
 };

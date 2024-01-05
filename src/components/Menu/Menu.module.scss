@@ -1,7 +1,14 @@
 .active {
-    background: red;
+    border-bottom: solid 3px red;
 }
 
 .title {
     cursor: pointer;
+    padding: 20px 0px;
+}
+
+.menuItem {
+    display: flex;
+    gap: 40px;
+    border-bottom: solid 1px rgb(255, 0, 195);
 }

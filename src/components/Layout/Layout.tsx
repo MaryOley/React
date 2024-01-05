@@ -5,15 +5,14 @@ import { Header } from '../Header/Header';
 
 type Props = {
   children: ReactNode;
-  sidebarContent: ReactNode;
+  menuContent: ReactNode;
 };
 
-export const Layout: FC<Props> = ({ children, sidebarContent }) => {
+export const Layout: FC<Props> = ({ children, menuContent }) => {
   return (
     <>
-      <Header></Header>
       <div className={styles.layout}>
-        <div className={styles.leftSide}>{sidebarContent}</div>
+        <div className={styles.header}>{menuContent}</div>
         <div className={styles.content}>{children}</div>
       </div>
     </>

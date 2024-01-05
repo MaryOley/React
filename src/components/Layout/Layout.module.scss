@@ -1,19 +1,8 @@
-.content {
-}
-
 .layout {
-    display: flex;
+    margin: 0 auto;
+    width: 1300px;
 }
 
-.leftSide {
-    height: 100vh;
-    width: 300px;
-    background-color: azure;
-    border-right: solid 1px gray;
+.content {
+    // border: solid 1px;
 }
-
-// @media (max-width: 1000px) {
-//     .leftSide {
-//         display: none;
-//     }
-// }

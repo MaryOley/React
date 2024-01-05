@@ -1,0 +1,17 @@
+.performers {
+    margin: 30px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.performer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+    border: solid 1px  rgb(255, 0, 195);
+    border-radius: 50%;
+    background: white;
+}
