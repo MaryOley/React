@@ -21,7 +21,7 @@ export const SidebarPages = () => {
         handleClose={() => setIsOpenRight(false)}
         position="right"
       >
-        справа
+        Открыт справа
       </Sidebar>
     </>
   );
