@@ -42,9 +42,9 @@ export const Modal = ({
 
         <p>{children}</p>
 
-        <button className={styles.button} onClick={handleClose}>
+        {/* <button className={styles.button} onClick={handleClose}>
           Close
-        </button>
+        </button> */}
       </div>
     </PortalWithTransition>
   );
