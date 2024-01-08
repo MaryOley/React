@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  front:
+    container_name: note-app
+    build: .
+    restart: always
+    ports:
+      - 8888:4173
