@@ -1,0 +1,49 @@
+.list {
+  width: 320px;
+  flex: 1;
+  overflow: auto;
+}
+
+.scroll {
+    overflow: auto;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.itemTitle {
+  padding: 10px 16px;
+  flex: 1;
+}
+
+.active {
+  background: #cb2222;
+  color: #fff;
+}
+
+.item:hover {
+  background: #444;
+  color: #fff;
+}
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}

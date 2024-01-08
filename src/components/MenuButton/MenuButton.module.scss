@@ -1,0 +1,49 @@
+.button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu {
+  border: solid 1px red;
+  width: 200px;
+  background: #fff;
+}
+
+.item {
+    cursor: pointer;
+    padding: 16px 10px;
+}
+
+.item:hover {
+   background-color: bisque;
+}
+
+.wrap {
+  --top: 10px;
+  --left: 10px;
+  position: fixed;
+  left: var(--left);
+  top: var(--top);
+  z-index: 100;
+}
+
+.start {
+  transform: scale(0.5) translate(-50%, -50%);
+  opacity: 0;
+}
+
+.active {
+  transition: transform 300ms, opacity 300ms;
+  transform: scale(1) translate(-50%, -50%);
+  opacity: 1;
+}
+
+.end {
+  transition: transform 300ms, opacity 300ms;
+  opacity: 0;
+  transform: scale(0) translate(-50%, -50%);
+}
+
+.icon {
+    transform: translateY(-5px) rotate(90deg);
+}

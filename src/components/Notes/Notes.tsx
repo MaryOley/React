@@ -1,163 +1,114 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './Notes.module.scss';
-import MDEditor from '@uiw/react-md-editor';
-import '@uiw/react-md-editor/markdown-editor.css';
-import '@uiw/react-markdown-preview/markdown.css';
-import { Sidebar } from '../Sidebar/Sidebar';
+import { FC, useState } from 'react';
+import styles from './NewNotes.module.scss';
+import { NoteContent } from './NoteContent/NoteContent';
 import { Modal } from '../Modal/Modal';
-import { is } from 'unist-util-is';
+import { NoteList } from './NoteList/NoteList';
+import {
+  useAddNoteQuery,
+  useDeleteNoteQuery,
+  useGetNotesQuery,
+  useUpdateNoteQuery,
+} from '../../hooks/useNoteQuery';
+import { Note } from '../types/notes';
+import { Sidebar } from '../Sidebar/Sidebar';
 
-type Note = { id: number; title: string; content: string };
+export const Notes: FC = () => {
+  const { data: notes = [], isFetched } = useGetNotesQuery();
 
-export const Notes = () => {
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [title, setTitle] = useState('');
-  const [count, setCount] = useState(0);
-  const [activeNoteId, setActiveNoteId] = useState<number | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState('');
-  const [isOpenSidebar, setOpenSidebar] = useState(false);
+  const [note, setNote] = useState<Note | null>(null);
 
-  const searchedNotes = notes.filter((note) => {
-    return note.title.includes(search) || note.content.includes(search);
-  });
+  const [isOpenModal, setOpenModal] = useState(false);
+  const [editNote, setEditNote] = useState<Note | null>(null);
+  const [editTitleValue, setEditTitleValue] = useState('');
 
-  const visibleNotes = search === '' ? notes : searchedNotes;
-
-  const activeNote = visibleNotes.find((note) => note.id === activeNoteId);
-
-  const noteValue = activeNote?.content || '';
-
-  useEffect(() => {
-    fetch('http://5.35.90.63:3005/notes/all')
-      .then((res) => res.json())
-      .then((notes) => setNotes(notes));
-  }, [count]);
-
-  const addNote = () => {
-    fetch('http://5.35.90.63:3005/notes/add', {
-      method: 'POST',
-      body: JSON.stringify({ title: title }) as any,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(() => setCount(count + 1));
+  const saveTitle = () => {
+    if (editNote && editTitleValue !== editNote.title) {
+      saveNote({ ...editNote, title: editTitleValue });
+    }
+    closeEditModal();
   };
 
-  const saveNote = () => {
-    if (activeNote) {
-      fetch('http://5.35.90.63:3005/notes/update', {
-        method: 'PUT',
-        body: JSON.stringify(activeNote) as any,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then(() => setCount(count + 1));
+  const isOpenEditModal = Boolean(editNote);
+  const closeEditModal = () => setEditNote(null);
+  const [inputValue, setInputValue] = useState('');
+
+  const addNoteQuery = useAddNoteQuery();
+
+  const addNote = () => {
+    const newNote = { title: inputValue, content: '' };
+    addNoteQuery(newNote);
+
+    setOpenModal(false);
+    setInputValue('');
+  };
+
+  const deleteNoteQuery = useDeleteNoteQuery();
+
+  const updateNoteQuery = useUpdateNoteQuery();
+
+  const saveNote = (note: Note | null) => {
+    if (note) {
+      updateNoteQuery(note);
     }
   };
 
-  const deleteNote = (id: number) => {
-    fetch(`http://5.35.90.63:3005/notes/${id}`, {
-      method: 'DELETE',
-    }).then(() => setCount(count + 1));
-  };
-
   return (
-    <div className={styles.wrap}>
-      <button
-        onClick={() => {
-          setOpenSidebar(true);
-        }}
-        className={styles.mobileBtn}
-      >
-        Меню
-      </button>
-      <Sidebar isOpen={isOpenSidebar}>
-        <button
-          onClick={() => {
-            setOpenSidebar(false);
-          }}
-        >
-          x
-        </button>
-        <div className={styles.search}>
-          <input
-            className={styles.inputSearch}
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-            }}
-          ></input>
+    <>
+      <div className={styles.wrap}>
+        <Sidebar isOpen={isFetched}>
+          {notes.length !== 0 && (
+            <NoteList
+              notes={notes}
+              activeId={note?.id}
+              onClickNote={(clickedNote) => {
+                saveNote(note);
+                setNote(clickedNote);
+              }}
+              onClickEdit={(note) => {
+                setEditTitleValue(note.title);
+                setEditNote(note);
+              }}
+              onClickDelete={(id) => deleteNoteQuery(id)}
+            />
+          )}
+
+          <button onClick={() => setOpenModal(true)}>Добавить</button>
+        </Sidebar>
+        <div className={styles.content} data-color-mode="light">
+          <NoteContent
+            note={note}
+            onChangeNote={setNote}
+            onClickSave={(note) => saveNote(note)}
+          />
         </div>
-        {visibleNotes.map((note) => (
-          <div className={styles.sidebarItem} key={note.id}>
-            <div className={styles.noteTitle} onClick={() => setActiveNoteId(note.id)}>
-              {note.title}
-            </div>
-            <button onClick={() => deleteNote(note.id)}>Удалить пост</button>
-          </div>
-        ))}
-      </Sidebar>
-      <Modal isOpen={isOpen} onClickClose={() => null}>
-        <input
-          className={styles.title}
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
-        <div className={styles.modalBtns}>
-          <button
-            onClick={() => {
-              addNote();
-              setIsOpen(false);
-            }}
-          >
-            Добавить
-          </button>
-          <button onClick={() => setIsOpen(false)}>Отменить</button>
-        </div>
-      </Modal>
-      <div className={styles.left}>
-        <div className={styles.search}>
-          <input
-            className={styles.inputSearch}
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-            }}
-          ></input>
-        </div>
-        {visibleNotes.map((note) => (
-          <div className={styles.sidebarItem} key={note.id}>
-            <div className={styles.noteTitle} onClick={() => setActiveNoteId(note.id)}>
-              {note.title}
-            </div>
-            <button onClick={() => deleteNote(note.id)}>Удалить пост</button>
-          </div>
-        ))}
-        <button className={styles.btnAdd} onClick={() => setIsOpen(true)}>
-          Добавить пост
-        </button>
       </div>
 
-      <div className={styles.right} data-color-mode="light">
-        <MDEditor
-          className={styles.md}
-          value={noteValue}
-          onChange={(value) => {
-            const newNotes = [...notes];
-            const note = newNotes.find((note) => note.id === activeNoteId);
-
-            if (note) {
-              note.content = value || '';
-              setNotes(newNotes);
-            }
+      {/* Модалки, всплывающие окна */}
+      <Modal isOpen={isOpenModal} onClickClose={() => setOpenModal(false)}>
+        <input
+          className={styles.input}
+          value={inputValue}
+          placeholder="Новая заметка"
+          onChange={(e) => {
+            setInputValue(e.target.value);
           }}
         />
-        <button className={styles.btnSave} onClick={() => saveNote()}>
-          Сохранить
-        </button>
-      </div>
-    </div>
+        <button onClick={() => setOpenModal(false)}>Отмена</button>
+        <button onClick={() => addNote()}>Добавить</button>
+      </Modal>
+
+      <Modal isOpen={isOpenEditModal} onClickClose={closeEditModal}>
+        <input
+          className={styles.input}
+          value={editTitleValue}
+          onChange={(e) => {
+            setEditTitleValue(e.target.value);
+          }}
+        />
+
+        <button onClick={() => closeEditModal()}>Отмена</button>
+        <button onClick={() => saveTitle()}>Сохранить</button>
+      </Modal>
+    </>
   );
 };

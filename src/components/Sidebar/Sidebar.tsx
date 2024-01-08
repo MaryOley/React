@@ -27,7 +27,7 @@ export const Sidebar: FC<Props> = ({
         end: styles[`${position}-end`],
       }}
     >
-      <div>
+      <div className={styles.sidebar}>
         {handleClose && (
           <button className={styles.close} onClick={() => handleClose()}>
             x

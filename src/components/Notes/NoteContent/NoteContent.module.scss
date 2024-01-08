@@ -1,0 +1,38 @@
+.editor {
+  flex: 1;
+  font-size: 40px;
+}
+
+.inputBox {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 16px;
+}
+
+.crossIcon {
+    position: absolute;
+    right: 16px;
+}
+
+.input {
+    width: 100%;
+    height: 50px;
+    font-size: 32px;
+    padding-left: 45px;
+    outline: none;
+}

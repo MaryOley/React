@@ -1,7 +1,14 @@
-import { useEffect, useState } from 'react';
-import { Layout } from './components/Layout/Layout';
 import { Notes } from './components/Notes/Notes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import 'animate.css';
+
+const queryClient = new QueryClient();
 
 export const App = () => {
-  return <Notes></Notes>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Notes />
+    </QueryClientProvider>
+  );
 };
