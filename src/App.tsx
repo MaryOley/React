@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Layout } from './components/Layout/Layout';
+import { useState } from 'react';
 import { Menu } from './components/Menu/Menu';
 import { Home } from './components/Home/Home';
 import { Performers } from './components/Performers/Performers';
-import { Notes } from './components/Notes/Notes';
+import { Header } from './components/Header/Header';
 
 const menu = [
   {
@@ -22,26 +21,21 @@ const menu = [
     title: 'Альбомы',
     content: <div />,
   },
-  {
-    title: 'Конспекты',
-    content: <Notes />,
-  },
 ];
 
 export const App = () => {
-  const [currentMenuItem, setCurrentMenuItem] = useState(4);
+  const [currentMenuItem, setCurrentMenuItem] = useState(0);
 
   return (
-    <Layout
-      menuContent={
+    <div>
+      <Header>
         <Menu
           items={menu}
           active={currentMenuItem}
           onClickMenuItem={(index) => setCurrentMenuItem(index)}
         ></Menu>
-      }
-    >
-      {menu[currentMenuItem].content}
-    </Layout>
+      </Header>
+      <div>{menu[currentMenuItem].content}</div>
+    </div>
   );
 };

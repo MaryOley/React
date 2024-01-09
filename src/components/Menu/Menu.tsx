@@ -10,18 +10,16 @@ type Props = {
 
 export const Menu: FC<Props> = ({ items, active, onClickMenuItem }) => {
   return (
-    <div>
-      <div className={styles.menuItem}>
-        {items.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => onClickMenuItem(index)}
-            className={cn(styles.title, { [styles.active]: active === index })}
-          >
-            {item.title}
-          </div>
-        ))}
-      </div>
+    <div className={styles.header}>
+      {items.map((item, index) => (
+        <div
+          key={index}
+          onClick={() => onClickMenuItem(index)}
+          className={cn(styles.title, { [styles.active]: active === index })}
+        >
+          {item.title}
+        </div>
+      ))}
     </div>
   );
 };

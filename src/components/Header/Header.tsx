@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import style from './Header.module.scss';
 
-export const Header = () => {
-  return (
-    <div className={style.header}>
-      <div>Исполнители</div>
-      <div>Жанры</div>
-      <div>Альбомы</div>
-      <input></input>
-    </div>
-  );
+type Props = {
+  children: ReactNode;
+};
+
+export const Header: Props = ({ children }) => {
+  return <div>{children}</div>;
 };
