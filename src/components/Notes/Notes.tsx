@@ -11,6 +11,8 @@ import {
 } from '../../hooks/useNoteQuery';
 import { Note } from '../types/notes';
 import { Sidebar } from '../Sidebar/Sidebar';
+import { Button, Input } from 'antd';
+import type { SearchProps } from '../Search';
 
 export const Notes: FC = () => {
   const { data: notes = [], isFetched } = useGetNotesQuery();
@@ -51,11 +53,18 @@ export const Notes: FC = () => {
       updateNoteQuery(note);
     }
   };
+  const { Search } = Input;
+
+  const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
+    console.log(info?.source, value);
+
+  const [searchValue, setSearchValue] = useState('');
 
   return (
     <>
       <div className={styles.wrap}>
         <Sidebar isOpen={isFetched}>
+          <Search className={styles.search} placeholder="Search" onSearch={onSearch} />
           {notes.length !== 0 && (
             <NoteList
               notes={notes}
@@ -72,7 +81,9 @@ export const Notes: FC = () => {
             />
           )}
 
-          <button onClick={() => setOpenModal(true)}>Добавить</button>
+          <Button size="small" type="primary" danger onClick={() => setOpenModal(true)}>
+            Добавить
+          </Button>
         </Sidebar>
         <div className={styles.content} data-color-mode="light">
           <NoteContent
@@ -93,8 +104,14 @@ export const Notes: FC = () => {
             setInputValue(e.target.value);
           }}
         />
-        <button onClick={() => setOpenModal(false)}>Отмена</button>
-        <button onClick={() => addNote()}>Добавить</button>
+        <div className={styles.modalBtns}>
+          <Button size="small" type="text" danger onClick={() => setOpenModal(false)}>
+            Отмена
+          </Button>
+          <Button size="small" type="primary" danger onClick={() => addNote()}>
+            Добавить
+          </Button>
+        </div>
       </Modal>
 
       <Modal isOpen={isOpenEditModal} onClickClose={closeEditModal}>
@@ -105,9 +122,14 @@ export const Notes: FC = () => {
             setEditTitleValue(e.target.value);
           }}
         />
-
-        <button onClick={() => closeEditModal()}>Отмена</button>
-        <button onClick={() => saveTitle()}>Сохранить</button>
+        <div className={styles.modalBtns}>
+          <Button size="small" type="text" danger onClick={() => closeEditModal()}>
+            Отмена
+          </Button>
+          <Button size="small" type="primary" danger onClick={() => saveTitle()}>
+            Сохранить
+          </Button>
+        </div>
       </Modal>
     </>
   );

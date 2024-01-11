@@ -5,6 +5,7 @@ import { Note } from '../../types/notes';
 import { BsSearchHeart as IconSearch } from 'react-icons/bs';
 import { RxCross1 as IconCross } from 'react-icons/rx';
 import { MenuButton } from '../../MenuButton/MenuButton';
+import { Button } from 'antd';
 type Props = {
   note: Note | null;
   onChangeNote: React.Dispatch<React.SetStateAction<Note | null>>;
@@ -31,9 +32,15 @@ export const NoteContent: FC<Props> = ({ note, onChangeNote, onClickSave }) => {
         value={note.content}
         onChange={(value) => onChangeNote({ ...note, content: value || '' })}
       />
-      <button className={styles.btnSave} onClick={() => onClickSave(note)}>
+      <Button
+        size="small"
+        type="primary"
+        danger
+        className={styles.btnSave}
+        onClick={() => onClickSave(note)}
+      >
         Сохранить
-      </button>
+      </Button>
     </>
   );
 };

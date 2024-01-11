@@ -62,8 +62,8 @@ export const NoteList: FC<Props> = ({
 
               <MenuButton
                 menu={[
-                  { label: 'Изменить', onClick: () => onClickEdit(note) },
-                  { label: 'Удалить', onClick: () => onClickDelete(note.id) },
+                  { key: 1, label: 'Изменить', onClick: () => onClickEdit(note) },
+                  { key: 2, label: 'Удалить', onClick: () => onClickDelete(note.id) },
                 ]}
               />
             </div>
