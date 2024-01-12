@@ -1,6 +1,3 @@
-.content {
-}
-
 .layout {
     display: flex;
 }
@@ -10,10 +7,9 @@
     width: 300px;
     background-color: azure;
     border-right: solid 1px gray;
+    overflow-y: scroll;
 }
 
-// @media (max-width: 1000px) {
-//     .leftSide {
-//         display: none;
-//     }
-// }
+.rightSide {
+    width: 100%;
+}

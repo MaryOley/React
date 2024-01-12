@@ -1,42 +1,19 @@
 import { useState } from 'react';
 import { Layout } from './components/Layout/Layout';
 import { Menu } from './components/Menu/Menu';
-import { SidebarPages } from './pages/SidebarPage/SidebarPages';
-import { ModalPage } from './pages/ModalPage/ModalPage';
-import { CrossAndZero } from './components/CrossAndZero/CrossAndZero';
-import { ButtonPage } from './pages/ButtonPage/ButtonPage';
-import { SliderPage } from './pages/SliderPage/SliderPage';
-import { AccardionPage } from './pages/AccardionPage/AccardionPage';
+import { User } from './components/Users/User';
+import { UserPage } from './pages/UserPage/UserPage';
 
 const menu = [
-  {
-    title: 'Sidebar',
-    content: <SidebarPages />,
-  },
-  {
-    title: 'Modal',
-    content: <ModalPage />,
-  },
-  {
-    title: 'Button',
-    content: <ButtonPage />,
-  },
-  {
-    title: 'Accardion',
-    content: <AccardionPage />,
-  },
-  {
-    title: 'CrossAndZero',
-    content: <CrossAndZero />,
-  },
-  {
-    title: 'Slider',
-    content: <SliderPage />,
-  },
+  { title: <User />, content: <UserPage /> },
+  { title: <User />, content: 'user huyzer' },
+  { title: <User />, content: 'user huyzer' },
+  { title: <User />, content: 'user huyzer' },
+  { title: <User />, content: 'user huyzer' },
 ];
 
 export const App = () => {
-  const [currentMenuItem, setCurrentMenuItem] = useState(5);
+  const [currentMenuItem, setCurrentMenuItem] = useState(0);
 
   return (
     <>

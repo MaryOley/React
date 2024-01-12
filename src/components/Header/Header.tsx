@@ -12,5 +12,12 @@ export const Header = () => {
       .then((obj) => setTemp(obj.main.temp));
   }, []);
 
-  return <div className={style.header}>{temp}</div>;
+  return (
+    <div className={style.header}>
+      <div>{temp}</div>
+      <div className={style.office}>
+        <div className={style.admin}>A</div>
+      </div>
+    </div>
+  );
 };

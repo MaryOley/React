@@ -11,10 +11,12 @@ type Props = {
 export const Layout: FC<Props> = ({ children, sidebarContent }) => {
   return (
     <>
-      <Header></Header>
       <div className={styles.layout}>
         <div className={styles.leftSide}>{sidebarContent}</div>
-        <div className={styles.content}>{children}</div>
+        <div className={styles.rightSide}>
+          <Header></Header>
+          <div className={styles.content}>{children}</div>
+        </div>
       </div>
     </>
   );
