@@ -1,0 +1,11 @@
+.active {
+  background: rgb(156, 181, 255);
+}
+
+.list {
+  cursor: pointer;
+  flex: 1;
+  overflow: auto;
+  scrollbar-color: red orange;
+  scrollbar-width: thin;
+}

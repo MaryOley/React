@@ -1,0 +1,19 @@
+.search {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+    padding: 16px;
+}
+
+.dropdown {
+  height: 200px;
+  overflow: auto;
+  width: 100%;
+  position: absolute;
+  top: 30px;
+  background: #fff;
+  border: solid 1px #eee;
+}

@@ -1,18 +1,22 @@
 import { FC } from 'react';
 import styles from './User.module.scss';
 
-type Props = {};
+type Props = {
+  imgUrl: string;
+  name: string;
+  email: string;
+};
 
-export const User: FC<Props> = ({}) => {
+export const User: FC<Props> = ({ name, email, imgUrl }) => {
   return (
     <>
       <div className={styles.user}>
         <div>
-          <img className={styles.img} src="src/components/img/user.jpg" />
+          <img className={styles.img} src={imgUrl} />
         </div>
-        <div className={styles.userTitle}>
-          <div className={styles.userName}>Script</div>
-          <div className={styles.userMail}>onit228@gmail.com</div>
+        <div className={styles.title}>
+          <div className={styles.name}>{name}</div>
+          <div className={styles.email}>{email}</div>
         </div>
       </div>
     </>
